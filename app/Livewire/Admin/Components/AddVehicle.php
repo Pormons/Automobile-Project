@@ -60,7 +60,7 @@ class AddVehicle extends Component
         ])->validate();
         try {
             if ($this->photo) {
-                $validate['image_url'] = $this->photo->store('uploads', 'public');
+                $validate['image_url'] = $this->photo->store('RAILWAY_VOLUME_MOUNT_PATH.env');
             }
 
             $vehicleData = Arr::except($validate, ['engine', 'axle', 'transmission', 'shock_absorber', 'quantity']);

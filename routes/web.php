@@ -38,10 +38,10 @@ use Illuminate\Support\Facades\Route;
 */
 // AUTH ------------------------------------------------------------------------>
 Route::get('/',                                   CustomerHome::class)->name('home');
-Route::get('/Login',    [Authentication::class,    'loginPage'])->name('login');
-Route::get('/Signup',   [Authentication::class,   'signupPage'])->name('signup');
 Route::get('/Cart',                               CartPage::class)->name('cart');
 Route::get('/{id}',                               VehicleDetails::class)->name('vehicleDetails');
+Route::get('/Login',    [Authentication::class,    'loginPage'])->name('login');
+Route::get('/Signup',   [Authentication::class,   'signupPage'])->name('signup');
 
 
 Route::middleware('auth')->group(function () {

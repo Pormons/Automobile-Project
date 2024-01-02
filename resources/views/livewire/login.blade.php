@@ -1,4 +1,4 @@
-<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+<div class="flex min-h-full w-full flex-col items-center px-6 py py-3 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-sm">
       <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
 

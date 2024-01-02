@@ -1,3 +1,0 @@
-<div>
-    Admin Home
-</div>

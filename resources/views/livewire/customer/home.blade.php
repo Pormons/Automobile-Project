@@ -2,7 +2,7 @@
     <div class="h-[10%] p-2 px-4 items-center w-full flex flex-row justify-between">
         <div>
         </div>
-        <div class="flex flex-flex-row w-[22%] border items-center bg-white px-2 rounded-xl">
+        <div class="flex flex-flex-row w-[22%] border-2 items-center bg-white px-2 rounded-xl">
             <input type="search" wire:model.live.debounce.500ms="searchVehicle" name=""
                 class="w-full focus:ring-0 focus:outline-none border-none rounded-xl" id="">
             <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"

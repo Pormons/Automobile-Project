@@ -166,10 +166,6 @@
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Return</a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" wire:click='soldVehicle({{ $inventory->id }})'
-                                                        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sold</a>
-                                                </li>
-                                                <li>
                                                     <div data-modal-target=retail-modal data-modal-toggle=retail-modal
                                                         class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
                                                         <button type="button"

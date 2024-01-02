@@ -8,6 +8,8 @@
             </path>
         </svg>
     </button>
+    @auth
+
 
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
@@ -95,6 +97,15 @@
                                 <span class="flex-1 ms-3 whitespace-nowrap">Partners</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="#"
+                                wire:click="signOut"
+                                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:text-white hover:bg-gray-500 group">
+
+                                <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
+                            </a>
+                        </li>
+
                     @endrole
                 </ul>
             </div>
@@ -127,4 +138,5 @@
                 </div>
             </div>
     </aside>
+    @endauth
 </div>

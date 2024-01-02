@@ -12,37 +12,21 @@
     </div>
     <section class="sm:p-5">
         <div class="mx-auto max-w-screen-xl">
-
             <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
                 <div
                     class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="w-full md:w-[40%] flex flex-row space-x-2">
-                        <div class="flex flex-row-reverse border-2 rounded-lg pr-2">
-                            <div class="flex items-center">
-                                <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
-                                    fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                            <input
-                                class="flex flex-grow bg-transparent focus:border-none focus:ring-0 border-none outline-none"
-                                wire:model.live="search" id="simple-search" name="simple-search" type="text"
-                                placeholder="Name">
-                        </div>
                         @if ($type === 'Supplier')
                             <div>
                                 <select id="countries" wire:model.live="part_type"
                                     class="bg-transparent border-2 rounded-lg focus:ring-0 focus:outline-none outline-none">
-                                    <option selected>Part Type</option>
+                                    <option value="" selected>Part Type</option>
                                     <option value="Engine">Engine</option>
                                     <option value="Axle">Axle</option>
                                     <option value="Transmission">Transmission</option>
                                     <option value="Shock Absorber">Shock Absorber</option>
                                 </select>
                             </div>
-
                         @endif
                     </div>
 
@@ -91,9 +75,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($stocks as $stock)
-                                <tr class="border-b dark:border-gray-700">
-                                    @if ($type === 'Supplier')
+
+
+                            @if ($type === 'Supplier')
+                                @foreach ($stocks as $stock)
+                                    <tr class="border-b dark:border-gray-700">
                                         <th scope="row"
                                             class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ $stock->part_name }}
@@ -114,36 +100,28 @@
                                                 </svg>
                                             </button>
                                         </td>
-                                    @else
-                                        <th scope="row"
-                                            class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $stocks->vin }}
-                                        </th>
-                                        <td class="px-4 py-3">{{ $stock->model }}</td>
-                                        <td class="px-4 py-3">{{ $stock->variant }}</td>
-                                        <td class="px-4 py-3">{{ $stock->color }}</td>
-                                        <td class="px-4 py-3">{{ $stock->body }}</td>
-                                        <td class="px-4 py-3">{{ $stock->model_year }}</td>
-                                        <td class="px-4 py-3">{{ $stock->price }}</td>
-                                        <td class="px-4 py-3">{{ $stock->status }}</td>
-                                        <td class="px-4 py-3">{{ $stock->manufactured_date }}</td>
-                                        <td class="px-4 py-3 flex items-center justify-end gap-3">
-                                            <button type="button"
-                                                wire:click="delete({{ $stock->id }})"
-                                                wire:confirm="Are you sure you want to delete this stock?"
-                                                class=" bg-red-500 rounded-md p-1">
-                                                <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                    viewBox="0 0 18 20">
-                                                    <path stroke="currentColor" stroke-linecap="round"
-                                                        stroke-linejoin="round" stroke-width="2"
-                                                        d="M1 5h16M7 8v8m4-8v8M7 1h4a1 1 0 0 1 1 1v3H6V2a1 1 0 0 1 1-1ZM3 5h12v13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Z" />
-                                                </svg>
-                                            </button>
-                                        </td>
-                                    @endif
-                                </tr>
+                                    </tr>
+                                @endforeach
+                            @else
+                                @foreach ($stocks as $stock)
+                                    @foreach ($stock->vehicles as $vehicles)
+                                        <tr>
+                                            <th scope="row"
+                                                class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                {{ $vehicles->vin }}
+                                            </th>
+                                            <td class="px-4 py-3">{{ $vehicles->model_info->brand_info->brand_name }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->variant_info->variant_name }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->color_info->color_name }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->body_info->body_style }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->model_year }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->price }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->status }}</td>
+                                            <td class="px-4 py-3">{{ $vehicles->manufactured_date }}</td>
+                                    @endforeach
+                                    </tr>
                             @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

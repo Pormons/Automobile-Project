@@ -19,6 +19,7 @@
 
 <body class="flex flex-col h-screen">
     @include('sweetalert::alert')
+
     @auth
         @if (Auth::user()->hasRole('Admin') || Auth::user()->hasRole('Dealer'))
             @livewire('sidebar')
@@ -47,8 +48,6 @@
             {{ $slot }}
         </div>
     @endguest
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

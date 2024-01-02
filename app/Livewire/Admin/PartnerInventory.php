@@ -5,9 +5,11 @@ namespace App\Livewire\Admin;
 use App\Models\Part;
 use Livewire\Component;
 use App\Models\Partner;
+use Livewire\WithPagination;
 
 class PartnerInventory extends Component
 {
+    use WithPagination;
 
     public $partnerId;
     public $type;
@@ -29,7 +31,8 @@ class PartnerInventory extends Component
 
         if($partner->partner_type === 'Manufacturer')
         {
-            $query = $partner->with('brandmodels.vehicles');
+            $query = $partner->brandmodels()->with('vehicles');
+
         }else{
             $query = $partner->parts();
 
@@ -40,9 +43,9 @@ class PartnerInventory extends Component
             if ($this->part_type) {
                 $query->where('part_type', $this->part_type);
             }
-
-            $stocks = $query->paginate(7);
         }
+
+        $stocks = $query->paginate(7);
 
         return view('livewire.admin.partner-inventory', compact('stocks'));
     }

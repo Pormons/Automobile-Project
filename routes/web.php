@@ -23,6 +23,8 @@ use App\Livewire\Dealer\Dashboard;
 use App\Livewire\Dealer\Inventory;
 use App\Livewire\Dealer\Transaction;
 use App\Livewire\Dealer\TransactionDetails;
+use App\Livewire\Login;
+use App\Livewire\Signup;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -39,9 +41,10 @@ use Illuminate\Support\Facades\Route;
 // AUTH ------------------------------------------------------------------------>
 Route::get('/',                                   CustomerHome::class)->name('home');
 Route::get('/Cart',                               CartPage::class)->name('cart');
+Route::get('/Login',                              Login::class)->name('login');
+Route::get('/Signup',                             Signup::class)->name('signup');
 Route::get('/{id}',                               VehicleDetails::class)->name('vehicleDetails');
-Route::get('/Login',    [Authentication::class,    'loginPage'])->name('login');
-Route::get('/Signup',   [Authentication::class,   'signupPage'])->name('signup');
+
 
 
 Route::middleware('auth')->group(function () {

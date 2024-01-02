@@ -11,10 +11,11 @@ class Dashboard extends Component
 {
 
     public $annual,$month,$inventory,$sold,$available,$orders,$sold_status,$rejected,$pending;
+    public $year,$months;
 
-    public function mount()
+    public function render()
     {
-        $currentYear = now()->year;
+        $currentYear = $this->year;
         $currentMonth = now()->month;
 
         $this->annual = Auth::user()->dealerTransaction()
@@ -37,12 +38,6 @@ class Dashboard extends Component
         $this->sold_status = Auth::user()->dealerTransaction->where('status', 'sold')->count();
         $this->rejected = Auth::user()->dealerTransaction->where('status', 'Rejected')->count();
         $this->pending = Auth::user()->dealerTransaction->where('status', 'Pending')->count();
-
-    }
-
-
-    public function render()
-    {
         return view('livewire.dealer.dashboard');
     }
 }

@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('/getPartner',[Admin::class, 'partnerview']);
+
 Route::get('/getUser',[DealerController::class, 'getUser']);
 
 Route::post('/Login', [Authentication::class, 'login' ])->name('login');

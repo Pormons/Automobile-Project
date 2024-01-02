@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CartPage extends Component
 {
@@ -35,7 +36,14 @@ class CartPage extends Component
 
     public function confirmOrder()
     {
-    $selectedInventories = $this->vehicles; // You need to define this method
+
+    $selectedInventories = $this->vehicles;
+
+    if($this->vehicles->isEmpty())
+    {
+        Alert::toast('Empty Cart', 'error');
+        return redirect()->to('/Cart');
+    }
 
     $customer = Auth::user();
     $inventoriesByDealer = collect($selectedInventories)->groupBy('dealer_info.id');

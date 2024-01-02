@@ -2,10 +2,10 @@
     <div class="mb-5">
         <span class="text-[50px] font-thin">Vehicles</span>
     </div>
-    <section class="sm:p-5">
+    <section class="p-0">
         <div class="mx-auto max-w-screen-xl">
             <!-- Start coding here -->
-            <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+            <div class="bg-white dark:bg-gray-800 w-full relative shadow-md sm:rounded-lg overflow-hidden">
                 <div
                     class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
                     <div class="w-full md:w-[40%] flex flex-row space-x-2">
@@ -62,11 +62,12 @@
                         <livewire:admin.components.add-vehicle />
                     </div>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="w-full">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Vehicle Identification Number</th>
+                                <th scope="col" class="px-4 py-3">Brand</th>
                                 <th scope="col" class="px-4 py-3">Model</th>
                                 <th scope="col" class="px-4 py-3">Variant</th>
                                 <th scope="col" class="px-4 py-3">Color</th>
@@ -82,10 +83,10 @@
                         <tbody>
                             @foreach ($vehicles as $vehicle)
                                 <tr class="border-b dark:border-gray-700">
-                                    <th scope="row"
+                                    <td scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $vehicle->vin }}
-                                    </th>
+                                    </td>
                                     <td class="px-4 py-3">{{ $vehicle->model_info->brand_info->brand_name }}</td>
                                     <td class="px-4 py-3">{{ $vehicle->model_info->model_name }}</td>
                                     <td class="px-4 py-3">{{ $vehicle->variant_info->variant_name }}</td>

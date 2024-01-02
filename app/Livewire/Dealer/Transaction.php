@@ -72,12 +72,11 @@ class Transaction extends Component
         $transaction->save();
 
         foreach ($transaction->dealerInventories as $inventory) {
-            // Update inventory status
+
             $inventory->sold_status = false;
             $inventory->available = true;
             $inventory->save();
 
-            // Update vehicle status
             $vehicle = $inventory->vin_info;
             $vehicle->status = '';
             $vehicle->save();

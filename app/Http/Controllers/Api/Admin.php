@@ -13,6 +13,7 @@ use App\Models\Dealer;
 use App\Models\Manufacturer;
 use App\Models\ModelName;
 use App\Models\Part;
+use App\Models\Partner;
 use App\Models\Supplier;
 use App\Models\Transaction;
 use App\Models\User;
@@ -27,6 +28,13 @@ use Illuminate\Support\Facades\DB;
 
 class Admin extends Controller
 {
+
+    public function partnerview()
+    {
+        $partner = Partner::find(3);
+        $vehicles = $partner->brandmodels()->with('vehicles')->paginate(7);
+        return $vehicles;
+    }
 
     public function storeManufacturer(Request $request)
     {

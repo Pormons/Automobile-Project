@@ -31,6 +31,11 @@
     <div class="w-[30%] bg-zinc-600 text-white border rounded-lg overflow-hidden shadow-md p-4">
         <h2 class="text-2xl font-semibold mb-4">Order Overview</h2>
         <div class="h-[70%] overflow-y-auto">
+            @if ($vehicles->isempty())
+            <div class="h-full w-full flex justify-center items-center text-lg font-semibold">
+                NO VEHICLES IN CART YET
+            </div>
+            @endif
             @foreach ($vehicles as $vehicle)
             <div class="mb-4 border-b pb-2">
                 <h3 class="text-lg font-semibold  mb-2">Dealer - {{ $vehicle->dealer_info->dealer }}</h3>
@@ -58,9 +63,17 @@
             </div>
         </div>
         <div class="flex justify-end">
-            <button wire:click="confirmOrder" class="bg-blue-500 text-white hover:bg-blue-800 hover:shadow-lg p-3 rounded-md">
-                Confirm Order
-            </button>
+            @auth
+                <button wire:click="confirmOrder" class="bg-blue-500 text-white hover:bg-blue-800 hover:shadow-lg p-3 rounded-md">
+                    Confirm Order
+                </button>
+            @endauth
+            @guest
+                <a href="/Login" class="bg-blue-500 text-white hover:bg-blue-800 hover:shadow-lg p-3 rounded-md">
+                    Confirm Order
+                </a>
+            @endguest
+
         </div>
     </div>
 

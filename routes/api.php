@@ -27,7 +27,7 @@ Route::get('/getPartner',[Admin::class, 'partnerview']);
 Route::get('/getUser',[DealerController::class, 'getUser']);
 
 Route::post('/Login', [Authentication::class, 'login' ])->name('login');
-Route::post('/Register',[Authentication::class,'register'])->name('register'); //request void'
+Route::post('/Register',[Authentication::class,'register'])->name('register');
 
 Route::middleware('auth:sanctum')->group( function() {
 

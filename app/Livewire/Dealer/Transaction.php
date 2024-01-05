@@ -19,7 +19,6 @@ class Transaction extends Component
     public $searchTransaction, $status;
     public function render()
     {
-            // $user = User::findOrFail(Auth::user()->id);
             $query = Auth::user()->dealerTransaction()
             ->join('purchased_vehicles', 'transactions.transaction_id', '=', 'purchased_vehicles.transaction')
             ->select('transactions.*', DB::raw('SUM(purchased_vehicles.price) as total, COUNT(purchased_vehicles.inventory_id) as quantity'))
@@ -44,6 +43,7 @@ class Transaction extends Component
         try{
             $transaction = Auth::user()->dealerTransaction()->findOrFail($transactionId);
             $transaction->status = 'sold';
+            $transaction->purchase_date = now();
             $transaction->save();
 
             foreach ($transaction->purchasedVehicles as $vehicle) {

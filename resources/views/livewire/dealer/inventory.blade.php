@@ -54,7 +54,7 @@
                                 class="bg-transparent mb-2 w-full border-2 rounded-lg focus:ring-0 focus:outline-none outline-none">
                                 <option value="">Status</option>
                                 <option value=1>Sold</option>
-                                <option value=false >Available</option>
+                                <option value=0 >Available</option>
                             </select>
                         </div>
                     </div>

@@ -16,9 +16,18 @@
         aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800 justify-between flex flex-col">
             <div>
-                <a href="#" class="flex items-center ps-2.5 mb-5">
+                @role('Dealer')
+                <a href="{{ route('dealerDashboard') }}" class="flex items-center ps-2.5 mb-5">
                     <span class="self-center text-[30px] font-semibold whitespace-nowrap dark:text-white">Quantum</span>
                 </a>
+                @endrole
+                @role('Admin')
+                <a href="{{ route('vehicles') }}" class="flex items-center ps-2.5 mb-5">
+                    <span class="self-center text-[30px] font-semibold whitespace-nowrap dark:text-white">Quantum</span>
+                </a>
+                @endrole
+
+
                 <ul class="space-y-2 font-medium">
                     @role('Dealer')
                     <li>

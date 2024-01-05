@@ -59,7 +59,6 @@ class Inventory extends Component
 
         $brands = Brand::all();
 
-        // Filter brand models based on the searchBrand
         $brandmodels = BrandModel::when($this->searchBrand, function ($query) {
             $query->where('brand', $this->searchBrand);
         })->get();

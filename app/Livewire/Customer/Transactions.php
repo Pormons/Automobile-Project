@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Reactive;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Transactions extends Component
 {
+    use WithPagination;
     public $searchTransaction;
 
     public $start,$end;

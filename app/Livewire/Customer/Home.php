@@ -4,6 +4,7 @@ namespace App\Livewire\Customer;
 
 use App\Models\BodyStyle;
 use App\Models\Color;
+use App\Models\User;
 use App\Models\Variant;
 use App\Models\Vehicle;
 use Livewire\Attributes\Reactive;
@@ -14,17 +15,22 @@ class Home extends Component
     public $colors;
     public $variants;
     public $bodyStyles;
-
+    public $dealers;
+    public $searchDealer;
     public $searchVehicle;
     public $selectedColors = [];
     public $selectedVariants = [];
     public $selectedBodyStyles = [];
+
+    public $start, $end;
+
 
     public function mount ()
     {
         $this->colors = Color::all();
         $this->variants = Variant::all();
         $this->bodyStyles = BodyStyle::all();
+        $this->dealers = User::where('user_type','dealer')->get();
     }
 
     public function render()
@@ -40,6 +46,24 @@ class Home extends Component
                 })
                 ->orWhereHas('model_info.brand_info', function ($query) {
                     $query->where('brand_name', 'LIKE', '%'. $this->searchVehicle. '%');
+                });
+            });
+        }
+
+        if($this->searchDealer)
+        {
+            $query->where(function ($subquery)
+            {
+                $subquery->whereHas('inventories', function ($query) {
+                    $query->where('dealer',$this->searchDealer);
+                });
+            });
+        }
+
+        if ($this->start && $this->end) {
+            $query->where(function ($subquery) {
+                $subquery->whereHas('inventories', function ($query) {
+                    $query->whereBetween('retail_price', [$this->start, $this->end]);
                 });
             });
         }

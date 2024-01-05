@@ -1,8 +1,15 @@
 <div class="w-full h-full flex flex-col" wire:ignore.self>
     <div class="h-[10%] p-2 px-4 items-center w-full flex flex-row justify-between">
         <div>
+            <select id="models" wire:model.live.500ms="searchDealer"
+                class="bg-transparent mb-2 w-full border-2 rounded-lg focus:ring-0 focus:outline-none outline-none">
+                <option value="">Dealers</option>
+                @foreach ($dealers as $dealer)
+                    <option value="{{ $dealer->id }}">{{ $dealer->dealer }}</option>
+                @endforeach
+            </select>
         </div>
-        <div class="flex flex-flex-row w-[22%] border-2 items-center bg-white px-2 rounded-xl">
+        <div class="flex flex-flex-row w-[22%] border-4 items-center bg-white px-2 rounded-xl">
             <input type="search" wire:model.live.debounce.500ms="searchVehicle" name=""
                 class="w-full focus:ring-0 focus:outline-none border-none rounded-xl" id="">
             <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -77,6 +84,16 @@
                             </li>
                         @endforeach
                     </ul>
+                </div>
+            </div>
+
+            <div class="flex flex-col flex-grow">
+                <span class="flex items-center justify-between w-full rtl:text-right font-semibold">
+                    Price Range
+                </span>
+                <div class="flex flex-row w-[90%] justify-between mt-2">
+                    <input type="text" class="w-[48%] rounded-lg ring-0 focus:ring-0" wire:model.live.debounce.500ms='start'  placeholder="min">
+                    <input type="text" class="w-[48%] rounded-lg ring-0 focus:ring-0" wire:model.live.debounce.500ms='end'  placeholder="max">
                 </div>
             </div>
         </div>
